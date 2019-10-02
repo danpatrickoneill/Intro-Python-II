@@ -1,4 +1,7 @@
+import textwrap
+
 from room import Room
+from player import Player
 
 # Declare all the rooms
 
@@ -38,14 +41,39 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
+hero = Player(room['outside'])
 
 # Write a loop that:
 #
 # * Prints the current room name
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
-#
-# If the user enters a cardinal direction, attempt to move to the room there.
-# Print an error message if the movement isn't allowed.
-#
-# If the user enters "q", quit the game.
+
+while True:
+    # Print current location and description
+    print(f'You find yourself in the {hero.location.name}')
+    for line in textwrap.wrap(hero.location.description, 40):
+        print(line)
+
+    # Request user input for direction to move
+    move = input("Please choose a direction: ").lower()
+
+    # Set available cardinal directions
+    directions = ['n', 'e', 's', 'w']
+
+    # Sets available paths for current location
+    hero.location.getPaths()
+
+    # If the user enters a cardinal direction, attempt to move to the room there.
+    if move in directions:
+        print(move)
+        hero.followPath(move)
+
+    # If the user enters "q", quit the game.
+    elif move == 'q':
+        print("Thanks for playing!")
+        break
+
+    # Print an error message if the movement isn't allowed.
+    else:
+        print('Invalid direction. Please try again: ')

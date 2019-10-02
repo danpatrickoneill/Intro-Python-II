@@ -51,8 +51,8 @@ hero = Player(room['outside'])
 
 while True:
     # Print current location and description
-    print(f'You find yourself in the {hero.location.name}')
-    for line in textwrap.wrap(hero.location.description, 40):
+    print(f'You find yourself in the {hero.location.getName()}')
+    for line in textwrap.wrap(hero.location.getDesc(), 40):
         print(line)
 
     # Request user input for direction to move

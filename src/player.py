@@ -3,19 +3,20 @@
 
 
 class Player:
-    def __init__(self, location):
-        self.location = location
+    def __init__(self, name, current_room):
+        self.name = name
+        self.current_room = current_room
 
-    def getLocation(self):
-        return self.location
+    def getCurrentRoom(self):
+        return self.current_room
 
-    def setLocation(self, location):
-        self.location = location
+    def setCurrentRoom(self, current_room):
+        self.current_room = current_room
 
     def followPath(self, path):
         try:
-            self.setLocation(self.location.paths[path])
-            print(f'Entering location: {self.location.name}')
+            self.setCurrentRoom(self.current_room.paths[path])
+            print(f'Entering location: {self.current_room.name}')
             return True
         except:
             print("There is no path in that direction. Please try again: ")

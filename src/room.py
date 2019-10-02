@@ -15,14 +15,11 @@ class Room:
         return self.description
 
     def getPaths(self):
-        if hasattr(self, 'n_to'):
-            self.paths['n'] = self.n_to
+        """
+        Loops over cardinal directions checking if 'direction_to' attribute has been assigned; if so, adds direction and room as key value pair in paths dictionary
+        """
+        directions = ['n', 'e', 's', 'w']
 
-        if hasattr(self, 'e_to'):
-            self.paths['e'] = self.e_to
-
-        if hasattr(self, 's_to'):
-            self.paths['s'] = self.s_to
-
-        if hasattr(self, 'w_to'):
-            self.paths['w'] = self.w_to
+        for d in directions:
+            if hasattr(self, f'{d}_to'):
+                self.paths[d] = getattr(self, f'{d}_to')

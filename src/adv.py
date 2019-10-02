@@ -41,7 +41,7 @@ room['treasure'].s_to = room['narrow']
 #
 
 # Make a new player object that is currently in the 'outside' room.
-hero = Player(room['outside'])
+hero = Player("Hero", room['outside'])
 
 # Write a loop that:
 #
@@ -51,8 +51,8 @@ hero = Player(room['outside'])
 
 while True:
     # Print current location and description
-    print(f'You find yourself in the {hero.location.getName()}')
-    for line in textwrap.wrap(hero.location.getDesc(), 40):
+    print(f'You find yourself in the {hero.current_room.getName()}')
+    for line in textwrap.wrap(hero.current_room.getDesc(), 40):
         print(line)
 
     # Request user input for direction to move
@@ -62,7 +62,7 @@ while True:
     directions = ['n', 'e', 's', 'w']
 
     # Sets available paths for current location
-    hero.location.getPaths()
+    hero.current_room.getPaths()
 
     # If the user enters a cardinal direction, attempt to move to the room there.
     if move in directions:

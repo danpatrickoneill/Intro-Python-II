@@ -6,6 +6,7 @@ class Player:
     def __init__(self, name, current_room):
         self.name = name
         self.current_room = current_room
+        self.inventory = []
 
     def getCurrentRoom(self):
         return self.current_room
@@ -21,3 +22,6 @@ class Player:
         except:
             print("There is no path in that direction. Please try again: ")
             return False
+
+    def addItem(self, item):
+        self.inventory.append(item)

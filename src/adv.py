@@ -1,9 +1,23 @@
+import shutil
 import textwrap
 
 from room import Room
 from player import Player
+from item import Item
+
+# Formatting functions
+
+
+def lineBreak():
+    print('\n')
+
+
+def centerText(text):
+    width, height = shutil.get_terminal_size()
+    return text.center(width)
 
 # Declare all the rooms
+
 
 room = {
     'outside':  Room("Outside Cave Entrance",
@@ -36,12 +50,24 @@ room['narrow'].w_to = room['foyer']
 room['narrow'].n_to = room['treasure']
 room['treasure'].s_to = room['narrow']
 
+# Declare all the items
+item = {
+    "torch":  Item("torch", "No more than a candle really, but good enough to get around by"),
+    "coin": Item("coin", "A filthy old coin")
+}
+
+# Add a bit of treasure to the treasure room
+room['treasure'].addItem(item['coin'])
+
 #
 # Main
 #
 
 # Make a new player object that is currently in the 'outside' room.
 hero = Player("Hero", room['outside'])
+
+# Set player characters initial inventory
+hero.addItem(item['torch'])
 
 # Write a loop that:
 #
@@ -51,9 +77,10 @@ hero = Player("Hero", room['outside'])
 
 while True:
     # Print current location and description
-    print(f'You find yourself in the {hero.current_room.getName()}')
+    print(centerText(hero.current_room.getName()))
     for line in textwrap.wrap(hero.current_room.getDesc(), 40):
-        print(line)
+        print(centerText(line))
+    lineBreak()
 
     # Request user input for direction to command
     userInput = input("Please choose your next move: ").lower()
@@ -74,8 +101,8 @@ while True:
             hero.followPath(action)
 
         # If the user enters "i", show player inventory.
-        elif action == 'i':
-            print(hero.inventory)
+        elif action == 'i' or action == "inventory":
+            hero.checkInventory()
 
         # If the user enters "q", quit the game.
         elif action == 'q':
@@ -91,7 +118,14 @@ while True:
         target = commands[1]
 
         if action == "get" or action == "take":
-            hero.takeItem(target)
+            try:
+                hero.takeItem(item[target])
+            except:
+                print('Invalid command. Please try again: ')
 
         if action == "drop":
-            hero.dropItem(target)
+            try:
+                hero.dropItem(item[target])
+            except:
+                print('Invalid command. Please try again: ')
+    lineBreak()

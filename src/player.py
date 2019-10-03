@@ -25,3 +25,19 @@ class Player:
 
     def addItem(self, item):
         self.inventory.append(item)
+
+    def takeItem(self, item):
+        if item in self.current_room.items:
+            self.inventory.append(item)
+            self.current_room.removeItem(item)
+            item.on_take()
+        else:
+            print(f"I don't see any {item}s here")
+
+    def dropItem(self, item):
+        if item in self.inventory:
+            self.inventory.remove(item)
+            self.current_room.addItem(item)
+            item.on_drop()
+        else:
+            print(f"You don't have any {item}s to drop!")

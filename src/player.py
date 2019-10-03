@@ -14,6 +14,11 @@ class Player:
     def setCurrentRoom(self, current_room):
         self.current_room = current_room
 
+    def checkInventory(self):
+        print("You carry with you: ")
+        for item in self.inventory:
+            print(item)
+
     def followPath(self, path):
         try:
             self.setCurrentRoom(self.current_room.paths[path])
@@ -32,7 +37,7 @@ class Player:
             self.current_room.removeItem(item)
             item.on_take()
         else:
-            print(f"I don't see any {item}s here")
+            print(f"I don't see any {item.name}s here")
 
     def dropItem(self, item):
         if item in self.inventory:
@@ -40,4 +45,4 @@ class Player:
             self.current_room.addItem(item)
             item.on_drop()
         else:
-            print(f"You don't have any {item}s to drop!")
+            print(f"You don't have any {item.name}s to drop!")

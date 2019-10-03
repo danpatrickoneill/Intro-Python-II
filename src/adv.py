@@ -91,7 +91,7 @@ while True:
         target = commands[1]
 
         if action == "get" or action == "take":
-            hero.pickUpItem(target)
+            hero.takeItem(target)
 
         if action == "drop":
             hero.dropItem(target)

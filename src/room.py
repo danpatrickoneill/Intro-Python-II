@@ -26,3 +26,6 @@ class Room:
             d_to = f'{d}_to'
             if hasattr(self, d_to):
                 self.paths[d] = getattr(self, d_to)
+
+    def addItem(self, item):
+        self.items.append(item)

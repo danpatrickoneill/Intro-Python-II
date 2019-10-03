@@ -62,7 +62,7 @@ while True:
     directions = ['n', 'e', 's', 'w']
 
     # Sets available paths for current location
-    hero.current_room.getPaths()
+    hero.current_room.setPaths()
 
     # If the user enters a cardinal direction, attempt to move to the room there.
     if move in directions:

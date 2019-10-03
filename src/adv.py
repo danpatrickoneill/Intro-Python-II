@@ -55,8 +55,11 @@ while True:
     for line in textwrap.wrap(hero.current_room.getDesc(), 40):
         print(line)
 
-    # Request user input for direction to move
-    move = input("Please choose a direction: ").lower()
+    # Request user input for direction to command
+    userInput = input("Please choose your next move: ").lower()
+    # Split command string for later length checks and set user action
+    commands = userInput.split(" ")
+    action = commands[0]
 
     # Set available cardinal directions
     directions = ['n', 'e', 's', 'w']
@@ -64,16 +67,31 @@ while True:
     # Sets available paths for current location
     hero.current_room.setPaths()
 
-    # If the user enters a cardinal direction, attempt to move to the room there.
-    if move in directions:
-        print(move)
-        hero.followPath(move)
+    if len(commands) == 1:
+        # If the user enters a cardinal direction, attempt to command to the room there.
+        if action in directions:
+            print(action)
+            hero.followPath(action)
 
-    # If the user enters "q", quit the game.
-    elif move == 'q':
-        print("Thanks for playing!")
-        break
+        # If the user enters "i", show player inventory.
+        elif action == 'i':
+            print(hero.inventory)
 
-    # Print an error message if the movement isn't allowed.
-    else:
-        print('Invalid direction. Please try again: ')
+        # If the user enters "q", quit the game.
+        elif action == 'q':
+            print("Thanks for playing!")
+            break
+
+        # Print an error message if the movement isn't allowed.
+        else:
+            print('Invalid direction. Please try again: ')
+
+    # Conditional dealing with compound inputs
+    elif len(commands) == 2:
+        target = commands[1]
+
+        if action == "get" or action == "take":
+            hero.pickUpItem(target)
+
+        if action == "drop":
+            hero.dropItem(target)

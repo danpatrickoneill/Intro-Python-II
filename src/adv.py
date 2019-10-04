@@ -7,14 +7,15 @@ from item import Item
 
 # Formatting functions
 
+view_width, view_height = shutil.get_terminal_size()
+
 
 def lineBreak():
     print('\n')
 
 
 def centerText(text):
-    width, height = shutil.get_terminal_size()
-    return text.center(width)
+    return text.center(view_width)
 
 # Declare all the rooms
 

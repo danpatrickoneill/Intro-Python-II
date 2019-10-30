@@ -19,13 +19,16 @@ class Room:
         """
         Loops over cardinal directions checking if 'direction_to' attribute has been assigned; if so, adds direction and room as key value pair in paths dictionary
         """
-        directions = ['n', 'e', 's', 'w']
+        if not self.paths:
+            print("Setting paths!")
 
-        for d in directions:
-            # set attr string based on current direction
-            d_to = f'{d}_to'
-            if hasattr(self, d_to):
-                self.paths[d] = getattr(self, d_to)
+            directions = ['n', 'e', 's', 'w']
+
+            for d in directions:
+                # set attr string based on current direction
+                d_to = f'{d}_to'
+                if hasattr(self, d_to):
+                    self.paths[d] = getattr(self, d_to)
 
     def addItem(self, item):
         self.items.append(item)

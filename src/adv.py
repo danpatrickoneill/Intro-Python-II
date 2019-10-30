@@ -83,6 +83,9 @@ while True:
         print(centerText(line))
     lineBreak()
 
+    # Sets available paths for current location
+    hero.current_room.setPaths()
+
     # Request user input for direction to command
     userInput = input("Please choose your next move: ").lower()
     # Split command string for later length checks and set user action
@@ -91,9 +94,6 @@ while True:
 
     # Set available cardinal directions
     directions = ['n', 'e', 's', 'w']
-
-    # Sets available paths for current location
-    hero.current_room.setPaths()
 
     if len(commands) == 1:
         # If the user enters a cardinal direction, attempt to command to the room there.

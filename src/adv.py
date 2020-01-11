@@ -76,12 +76,18 @@ hero.add_item(item['torch'])
 # * Prints the current description (the textwrap module might be useful here).
 # * Waits for user input and decides what to do.
 
+previous_room = None
+
 while True:
     # Print current location and description
-    print(center_text(hero.current_room.get_name()))
-    for line in textwrap.wrap(hero.current_room.get_desc(), 40):
-        print(center_text(line))
-    line_break()
+
+    if hero.current_room != previous_room:
+        print(center_text(hero.current_room.get_name()))
+        for line in textwrap.wrap(hero.current_room.get_desc(), 40):
+            print(center_text(line))
+        line_break()
+
+    previous_room = hero.current_room
 
     # Sets available paths for current location
     hero.current_room.set_paths()

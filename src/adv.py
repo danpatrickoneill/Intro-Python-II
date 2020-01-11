@@ -10,11 +10,11 @@ from item import Item
 view_width, view_height = shutil.get_terminal_size()
 
 
-def lineBreak():
+def line_break():
     print('\n')
 
 
-def centerText(text):
+def center_text(text):
     return text.center(view_width)
 
 # Declare all the rooms
@@ -58,7 +58,7 @@ item = {
 }
 
 # Add a bit of treasure to the treasure room
-room['treasure'].addItem(item['coin'])
+room['treasure'].add_item(item['coin'])
 
 #
 # Main
@@ -68,7 +68,7 @@ room['treasure'].addItem(item['coin'])
 hero = Player("Hero", room['outside'])
 
 # Set player characters initial inventory
-hero.addItem(item['torch'])
+hero.add_item(item['torch'])
 
 # Write a loop that:
 #
@@ -78,18 +78,18 @@ hero.addItem(item['torch'])
 
 while True:
     # Print current location and description
-    print(centerText(hero.current_room.getName()))
-    for line in textwrap.wrap(hero.current_room.getDesc(), 40):
-        print(centerText(line))
-    lineBreak()
+    print(center_text(hero.current_room.get_name()))
+    for line in textwrap.wrap(hero.current_room.get_desc(), 40):
+        print(center_text(line))
+    line_break()
 
     # Sets available paths for current location
-    hero.current_room.setPaths()
+    hero.current_room.set_paths()
 
     # Request user input for direction to command
-    userInput = input("Please choose your next move: ").lower()
+    user_input = input("Please choose your next move: ").lower()
     # Split command string for later length checks and set user action
-    commands = userInput.split(" ")
+    commands = user_input.split(" ")
     action = commands[0]
 
     # Set available cardinal directions
@@ -99,11 +99,11 @@ while True:
         # If the user enters a cardinal direction, attempt to command to the room there.
         if action in directions:
             print(action)
-            hero.followPath(action)
+            hero.follow_path(action)
 
         # If the user enters "i", show player inventory.
         elif action == 'i' or action == "inventory":
-            hero.checkInventory()
+            hero.check_inventory()
 
         # If the user enters "q", quit the game.
         elif action == 'q':
@@ -120,13 +120,13 @@ while True:
 
         if action == "get" or action == "take":
             try:
-                hero.takeItem(item[target])
+                hero.take_item(item[target])
             except:
                 print('Invalid command. Please try again: ')
 
         if action == "drop":
             try:
-                hero.dropItem(item[target])
+                hero.drop_item(item[target])
             except:
                 print('Invalid command. Please try again: ')
-    lineBreak()
+    line_break()

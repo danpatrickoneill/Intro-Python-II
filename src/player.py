@@ -21,7 +21,7 @@ class Player:
 
     def follow_path(self, path):
         try:
-            self.setCurrentRoom(self.current_room.paths[path])
+            self.set_current_room(self.current_room.paths[path])
             print(f'Entering location: {self.current_room.name}')
             return True
         except:
@@ -34,7 +34,7 @@ class Player:
     def take_item(self, item):
         if item in self.current_room.items:
             self.inventory.append(item)
-            self.current_room.removeItem(item)
+            self.current_room.remove_item(item)
             item.on_take()
         else:
             print(f"I don't see any {item.name}s here")
@@ -42,7 +42,7 @@ class Player:
     def drop_item(self, item):
         if item in self.inventory:
             self.inventory.remove(item)
-            self.current_room.addItem(item)
+            self.current_room.add_item(item)
             item.on_drop()
         else:
             print(f"You don't have any {item.name}s to drop!")

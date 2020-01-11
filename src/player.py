@@ -20,13 +20,11 @@ class Player:
             print(item)
 
     def follow_path(self, path):
-        try:
-            self.set_current_room(self.current_room.paths[path])
-            print(f'Entering location: {self.current_room.name}')
-            return True
-        except:
+        next_room = self.current_room.paths[path]
+        if next_room:
+            self.set_current_room(next_room)
+        else:
             print("There is no path in that direction. Please try again: ")
-            return False
 
     def add_item(self, item):
         self.inventory.append(item)

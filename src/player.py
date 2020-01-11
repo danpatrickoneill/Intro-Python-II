@@ -27,7 +27,7 @@ class Player:
         if next_room:
             self.set_current_room(next_room)
         else:
-            print("There is no path in that direction. Please try again: ")
+            print("There is no path in that direction. Try again.")
 
     def add_item(self, item):
         self.inventory.append(item)

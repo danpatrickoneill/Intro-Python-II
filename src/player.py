@@ -8,18 +8,18 @@ class Player:
         self.current_room = current_room
         self.inventory = []
 
-    def getCurrentRoom(self):
+    def get_current_room(self):
         return self.current_room
 
-    def setCurrentRoom(self, current_room):
+    def set_current_room(self, current_room):
         self.current_room = current_room
 
-    def checkInventory(self):
+    def check_inventory(self):
         print("You carry with you: ")
         for item in self.inventory:
             print(item)
 
-    def followPath(self, path):
+    def follow_path(self, path):
         try:
             self.setCurrentRoom(self.current_room.paths[path])
             print(f'Entering location: {self.current_room.name}')
@@ -28,10 +28,10 @@ class Player:
             print("There is no path in that direction. Please try again: ")
             return False
 
-    def addItem(self, item):
+    def add_item(self, item):
         self.inventory.append(item)
 
-    def takeItem(self, item):
+    def take_item(self, item):
         if item in self.current_room.items:
             self.inventory.append(item)
             self.current_room.removeItem(item)
@@ -39,7 +39,7 @@ class Player:
         else:
             print(f"I don't see any {item.name}s here")
 
-    def dropItem(self, item):
+    def drop_item(self, item):
         if item in self.inventory:
             self.inventory.remove(item)
             self.current_room.addItem(item)

@@ -20,8 +20,6 @@ class Room:
         Loops over cardinal directions checking if 'direction_to' attribute has been assigned; if so, adds direction and room as key value pair in paths dictionary
         """
         if not self.paths:
-            print("Setting paths!")
-
             directions = ['n', 'e', 's', 'w']
 
             for d in directions:

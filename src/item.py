@@ -6,10 +6,10 @@ class Item:
     def __str__(self):
         return self.name.capitalize() + "\n" + self.description
 
-    def getName(self):
+    def get_name(self):
         return self.name
 
-    def getDesc(self):
+    def get_desc(self):
         return self.description
 
     def on_take(self):

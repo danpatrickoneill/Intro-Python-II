@@ -17,6 +17,12 @@ def line_break():
 def center_text(text):
     return text.center(view_width)
 
+def show_room(player):
+    print(center_text(player.current_room.get_name()))
+    for line in textwrap.wrap(player.current_room.get_desc(), 40):
+        print(center_text(line))
+    line_break()
+
 # Declare all the rooms
 
 
@@ -82,10 +88,7 @@ while True:
     # Print current location and description
 
     if hero.current_room != previous_room:
-        print(center_text(hero.current_room.get_name()))
-        for line in textwrap.wrap(hero.current_room.get_desc(), 40):
-            print(center_text(line))
-        line_break()
+        show_room(hero)
 
     previous_room = hero.current_room
 
@@ -117,7 +120,7 @@ while True:
 
         # Print an error message if the movement isn't allowed.
         else:
-            print('Invalid direction. Please try again: ')
+            print('Invalid direction. Try again.')
 
     # Conditional dealing with compound inputs
     elif len(commands) == 2:
@@ -127,11 +130,11 @@ while True:
             try:
                 hero.take_item(item[target])
             except:
-                print('Invalid command. Please try again: ')
+                print('Invalid command. Try again.')
 
         if action == "drop":
             try:
                 hero.drop_item(item[target])
             except:
-                print('Invalid command. Please try again: ')
+                print('Invalid command. Try again.')
     line_break()

@@ -127,14 +127,9 @@ while True:
         target = commands[1]
 
         if action == "get" or action == "take":
-            try:
-                hero.take_item(item[target])
-            except:
-                print('Invalid command. Try again.')
+            hero.take_item(item[target])
 
         if action == "drop":
-            try:
-                hero.drop_item(item[target])
-            except:
-                print('Invalid command. Try again.')
+            hero.drop_item(item[target])
+
     line_break()

@@ -35,7 +35,7 @@ class Player:
             self.current_room.remove_item(item)
             item.on_take()
         else:
-            print(f"I don't see any {item.name}s here")
+            print(f"I don't see a {item.name} here")
 
     def drop_item(self, item):
         if item in self.inventory:
@@ -43,4 +43,4 @@ class Player:
             self.current_room.add_item(item)
             item.on_drop()
         else:
-            print(f"You don't have any {item.name}s to drop!")
+            print(f"You don't have a {item.name} to drop!")

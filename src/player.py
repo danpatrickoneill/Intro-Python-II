@@ -20,6 +20,9 @@ class Player:
             print(item)
 
     def follow_path(self, path):
+        """
+        Given a cardinal direction, attempts to move in that direction; either moves player or prints error message
+        """
         next_room = self.current_room.paths[path]
         if next_room:
             self.set_current_room(next_room)

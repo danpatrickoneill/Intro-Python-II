@@ -9,13 +9,13 @@ class Room:
         self.paths = {}
         self.items = []
 
-    def getName(self):
+    def get_name(self):
         return self.name
 
-    def getDesc(self):
+    def get_desc(self):
         return self.description
 
-    def setPaths(self):
+    def set_paths(self):
         """
         Loops over cardinal directions checking if 'direction_to' attribute has been assigned; if so, adds direction and room as key value pair in paths dictionary
         """
@@ -28,8 +28,8 @@ class Room:
                 if hasattr(self, d_to):
                     self.paths[d] = getattr(self, d_to)
 
-    def addItem(self, item):
+    def add_item(self, item):
         self.items.append(item)
 
-    def removeItem(self, item):
+    def remove_item(self, item):
         self.items.remove(item)

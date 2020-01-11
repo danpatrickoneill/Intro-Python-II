@@ -98,7 +98,6 @@ while True:
     if len(commands) == 1:
         # If the user enters a cardinal direction, attempt to command to the room there.
         if action in directions:
-            print(action)
             hero.follow_path(action)
 
         # If the user enters "i", show player inventory.
